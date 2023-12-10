@@ -181,7 +181,7 @@ const CreditCardForm = () => {
 
 const CheckoutForm = () => {
   const handlePlaceOrder =()=>{
-    
+    alert("place order")
   }
   return (
     <form>
