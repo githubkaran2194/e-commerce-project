@@ -43,7 +43,7 @@ const ResetPassword = () => {
                         value={email}
                         onChange={(e) => {
                             setEmail(e.target.value);
-                            setError(null); // Clear the error message when the user types
+                            setError(null); 
                         }}
                         error={Boolean(error)}
                         helperText={error}
