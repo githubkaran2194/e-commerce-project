@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, Navigate, useNavigate } from 'react-router-dom';
-import { Button, Container, Paper, TextField, Typography } from '@mui/material';
+import { Box, Button, Container, Paper, TextField, Typography } from '@mui/material';
 import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
 import { auth } from './Firebase-auth';
 
@@ -69,8 +69,16 @@ const Signup = () => {
     };
 
     return (
+        <Box
+        sx={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            height: '100vh', 
+        }}
+    >
         <Container maxWidth="xs">
-            <Paper component="form" sx={{ p: '20px', mt: '100px' }} onSubmit={handleSubmit}>
+            <Paper component="form" sx={{ p: '20px'}} onSubmit={handleSubmit}>
                 <Typography textAlign="center" fontWeight="bold" variant="h5">
                     Signup
                 </Typography>
@@ -125,6 +133,7 @@ const Signup = () => {
                 </Typography>
             </Paper>
         </Container>
+        </Box>
     );
 };
 

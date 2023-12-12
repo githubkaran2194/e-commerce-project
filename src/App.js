@@ -12,6 +12,7 @@ import PageDetail from './pages/PageDetail';
 import Login from './components/Login';
 import SignUp from './components/SignUp';
 import Cart from './pages/Cart';
+import ResetPassword from './components/ResetPassword';
 
 function App() {
   const [cart, setCart] = useState([]);
@@ -61,6 +62,7 @@ function App() {
               path="/"
               element={<Login setIsLoggedIn={setIsLoggedIn} />}
             />
+            <Route path='/reset password' element={<ResetPassword/>} />
             <Route path="/signup" element={<SignUp />} />
             <Route
               path="*"

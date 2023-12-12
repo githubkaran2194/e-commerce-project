@@ -32,7 +32,7 @@ const Product = ({ addToCart }) => {
         setData(response.data);
         setFilterData(response.data)
       } catch (error) {
-        console.log(error);
+       alert(error);
       }
     };
 
