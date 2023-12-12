@@ -19,6 +19,7 @@ const ResetPassword = () => {
         } catch (error) {
             alert(`Error: ${error.message}`);
         }
+        setEmail('')
     };
 
     return (
