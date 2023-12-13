@@ -5,7 +5,7 @@ import about from '../imges/about.jpg'
 const About = () => {
   return (
     <>
-      <Container sx={{ mt: "80px", height: "100vh" }}>
+      <Container sx={{ display:"flex", justifyContent:"center", alignItems:"center", height: "100vh" }}>
         <Grid container spacing={4}>
           <Grid item sm={6} md={6} lg={6}>
             <Card sx={{ boxShadow: 3, borderRadius: 2, height: '100%', p:"10px" }}>

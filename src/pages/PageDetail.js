@@ -25,7 +25,7 @@ const PageDetail = ({addToCart}) => {
     }, [id]);
 
     return (
-        <Container sx={{ m: "10px auto" }}>
+        <Container sx={{display:'flex',justifyContent:"center", alignItems:"center", height:"100vh" }}>
             <Grid container spacing={3}>
                 {
                     product.map((item) => (

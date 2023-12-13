@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { Grid, TextField, FormControl, InputLabel, Select, MenuItem, Box, Button, Typography } from '@mui/material';
 
-const ShippingAddressForm = () => {
+const CheckoutForm = () => {
+
   const [address, setAddress] = useState({
     fName: '',
     lName: '',
@@ -12,11 +13,38 @@ const ShippingAddressForm = () => {
     state: '',
   });
 
+  const [creditCard, setCreditCard] = useState({
+    cardholderName: '',
+    cardNumber: '',
+    expiryDate: '',
+    cvv: '',
+  });
+
   const handleInput = (e) => {
     const { name, value } = e.target;
     setAddress((prevAddress) => ({ ...prevAddress, [name]: value }));
   };
 
+  const handleCreditCardInput = (e) => {
+    const { name, value } = e.target;
+    setCreditCard((prevCreditCard) => ({ ...prevCreditCard, [name]: value }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+      const requiredAddressFields = ['fName', 'lName', 'address', 'city', 'postalCode', 'country', 'state'];
+      const missingAddressFields = requiredAddressFields.filter(field => address[field].trim() === '');
+    
+      const requiredCreditCardFields = ['cardholderName', 'cardNumber', 'expiryDate', 'cvv'];
+      const missingCreditCardFields = requiredCreditCardFields.filter(field => creditCard[field].trim() === '');
+    
+      if (missingAddressFields.length > 0 || missingCreditCardFields.length > 0) {
+        const missingFields = [...missingAddressFields, ...missingCreditCardFields];
+        alert(`Please fill in the following required fields: ${missingFields.join(', ')}`);
+      } else {
+        alert('Successfully entered!');
+      } 
+  }
   return (
     <>
       <Typography sx={{ fontFamily: 'monospace', fontWeight: 'bold', fontSize: '26px' }}>Shipping Address</Typography>
@@ -109,25 +137,7 @@ const ShippingAddressForm = () => {
           </FormControl>
         </Grid>
       </Grid>
-    </>
-  );
-};
 
-const CreditCardForm = () => {
-  const [creditCard, setCreditCard] = useState({
-    cardholderName: '',
-    cardNumber: '',
-    expiryDate: '',
-    cvv: '',
-  });
-
-  const handleCreditCardInput = (e) => {
-    const { name, value } = e.target;
-    setCreditCard((prevCreditCard) => ({ ...prevCreditCard, [name]: value }));
-  };
-
-  return (
-    <>
       <Typography sx={{ fontFamily: 'monospace', fontWeight: 'bold', fontSize: '26px' }}>Credit Card</Typography>
       <Grid container spacing={2} sx={{ p: '20px' }}>
         <Grid item xs={12}>
@@ -175,24 +185,9 @@ const CreditCardForm = () => {
           />
         </Grid>
       </Grid>
-    </>
-  );
-};
 
-const CheckoutForm = () => {
-  const handlePlaceOrder =()=>{
-    alert("place order")
-  }
-  return (
-    <form>
-      <ShippingAddressForm  />
-      <Box mt={4} />
-      <CreditCardForm />
-      <Box mt={4} />
-      <Button variant="contained" color="primary" onClick={handlePlaceOrder}>
-        Place Order
-      </Button>
-    </form>
+      <Button variant='contained' onClick={handleSubmit}>Submit</Button>
+    </>
   );
 };
 

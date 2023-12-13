@@ -13,10 +13,11 @@ import Login from './components/Login';
 import SignUp from './components/SignUp';
 import Cart from './pages/Cart';
 import ResetPassword from './components/ResetPassword';
+import Footer from './components/Footer';
 
 function App() {
   const [cart, setCart] = useState([]);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
 
   const addToCart = (product) => {
     setCart([...cart, { ...product, quantity: 1 }]);
@@ -33,7 +34,6 @@ function App() {
         {isLoggedIn ? (
           <>
             <Navbar cart={cart} handleLogout={handleLogout} />
-            <Toolbar />
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/about" element={<About />} />
@@ -70,6 +70,7 @@ function App() {
             />
           </Routes>
         )}
+        <Footer/>
       </BrowserRouter>
     </>
   );

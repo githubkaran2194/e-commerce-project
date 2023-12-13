@@ -44,7 +44,7 @@ const Contact = () => {
   };
 
   return (
-    <Container maxWidth="xs" sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', mt: "20px" }}>
+    <Container maxWidth="xs" sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height:"100vh"}}>
       <Paper component="form" sx={{ p: '20px', width: '100%', maxWidth: '400px' }} onSubmit={handleSubmit}>
         <Typography textAlign={'center'} m={'10px'} fontWeight={'bold'}>Contact us</Typography>
         <TextField

@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 const HeroSection = () => {
     return (
-        <Container sx={{ display: "flex", justifyContent: "center", alignItems: "center", height: "100vh" }}>
+        <Container sx={{ display: "flex", justifyContent: "center", alignItems: "center", height: "100vh"}} className='home' >
         <Grid container spacing={4}>
           <Grid item sm={8} sx={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
             <Typography
