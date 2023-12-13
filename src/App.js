@@ -18,8 +18,15 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const addToCart = (product) => {
-    setCart([...cart, { ...product, quantity: 1 }]);
-    console.log(product);
+    const existingProductIndex = cart.findIndex((item) => item.id === product.id);
+
+    if (existingProductIndex !== -1) {
+      const updatedCart = [...cart];
+      updatedCart[existingProductIndex].quantity += 1;
+      setCart(updatedCart);
+    } else {
+      setCart([...cart, { ...product, quantity: 1 }]);
+    }
   };
 
   const handleLogout = () => {
