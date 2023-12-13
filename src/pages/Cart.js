@@ -28,7 +28,7 @@ const Checkout = ({ cart, setCart }) => {
     <Box sx={{ textAlign: 'center' ,display:"flex", justifyContent:"center", alignItems:"center", m:"60px 0"}}>
      <Container>
      {cart.length === 0 ? (
-      <Typography variant="h5" sx={{ fontWeight: "bold", fontFamily: "monospace", color: "white" }}>
+      <Typography variant="h5" sx={{ fontWeight: "bold", fontFamily: "monospace", color: "white", m:"60px 0" }}>
         Your cart is empty
       </Typography>
     ) : (

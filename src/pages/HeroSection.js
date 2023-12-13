@@ -21,15 +21,14 @@ const HeroSection = () => {
                     <Typography variant="body1" color="text.secondary" sx={{ mt: "20px", maxWidth: "500px" }}>
                         Unleash the latest fashion trends and redefine your wardrobe with our exclusive collection of curated styles.
                     </Typography>
-                    <Link to='/product'>
+                    <Link to='/product' style={{textDecoration:'none'}}>
                         <Button
                             variant="contained"
                             size="large"
                             sx={{
                                 backgroundColor: 'primary.main',
                                 color: 'white',
-                                mt: '20px',  
-                                textDecoration:'none'
+                                mt: '20px'
                             }}
                         >
                             Explore Now

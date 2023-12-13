@@ -51,7 +51,7 @@ const Product = ({ addToCart }) => {
     };
 
   return (
-    <Container >
+    <Container sx={{m:"10px 0"}}>
     <FilterSection handleFilter={handleFilter}/>
       <Grid container spacing={3}>
         {filterData.map((item) => (

@@ -5,7 +5,7 @@ import about from '../imges/about.jpg'
 const About = () => {
   return (
     <>
-      <Container sx={{ display:"flex", justifyContent:"center", alignItems:"center", mt:"90px"}}>
+      <Container sx={{ display:"flex", justifyContent:"center", alignItems:"center", m:"90px 0"}}>
       <Box>
         <Grid container spacing={4}>
           <Grid item sm={6} md={6} lg={6}>
@@ -16,10 +16,16 @@ const About = () => {
                   About Us
                 </Typography>
                 <Typography variant="body1" sx={{ mb: 3, color:"grey" }}>
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo dicta esse recusandae eveniet non at vitae corrupti illo est consequatur dolores aliquam vero veniam iusto odit facere, sint, laudantium neque.
+                Welcome to Shopper, we're all about making your shopping experience exceptional. Our core belief is that simplicity leads to satisfaction. We're on a mission to provide you with a hassle-free journey, allowing you to effortlessly explore and acquire your desired products.
+
+At Shopper, our philosophy is “simplicity is key”. We aim to deliver an efficient shopping journey enabling our clients to easily explore and acquire their favorite items.
+
+Our team constantly explores new ways to present our merchandise in the clearest and most informative manner, ensuring that our customers are well-informed about their purchases.
+
+With a focus on sustainability and eco-friendliness, Shopper eCommerce offers environmentally conscious products while maintaining our minimalistic vision.
                 </Typography>
                 <Typography variant="body2">
-                  At [Your Brand Name], we are passionate about [your mission or purpose]. Our journey began with the vision to [briefly describe your vision or goal]. We believe in [mention any core values or principles] and strive to [what sets you apart from others].
+                 
                 </Typography>
               </CardContent>
             </Card>

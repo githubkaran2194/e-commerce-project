@@ -69,7 +69,7 @@ const PageDetail = ({addToCart}) => {
                                         <Button variant='contained' color='success' onClick={()=>addToCart(item)} size='small'>
                                             Add To Cart
                                         </Button>
-                                        <Link to='/product'>
+                                        <Link to='/product' style={{textDecoration:'none'}}>
                                         <Button variant='contained' color='error' sx={{ml:"10px"}} size='small'>
                                         back to products
                                     </Button>

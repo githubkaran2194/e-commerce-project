@@ -1,4 +1,5 @@
-import { Container, Dialog, Grid, Paper, Typography } from '@mui/material';
+import { Close } from '@mui/icons-material';
+import { Container, Dialog, Grid, Icon, IconButton, Paper, Typography } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 
 const StartingPop = () => {
@@ -10,14 +11,13 @@ const StartingPop = () => {
         }, 3000);
         const close = setTimeout(() => {
             setStartPop(false)
-        }, 7000)
+        }, 6000)
         return () => clearTimeout(open && close);
     }, []);
 
     return (
-        <Dialog open={startPop} fullWidth maxWidth="sm">
-            <Container>
-                <Paper>
+        <Dialog open={startPop} onClose={()=>setStartPop(false)} fullWidth maxWidth="sm">
+            <Container sx={{p:"20px"}}>
                     <Grid container spacing={5} alignItems="center">
                         <Grid item>
                             <img
@@ -28,14 +28,13 @@ const StartingPop = () => {
                         </Grid>
                         <Grid item>
                             <Typography variant="h5" align="center" sx={{ p: 2 }}>
-                                Welcome to Our Website!
+                                Welcome to Our SHOPPER!
                             </Typography>
                             <Typography variant="body1" align="center" sx={{ p: 2 }}>
                                 Thank you for visiting. Enjoy your experience!
                             </Typography>
                         </Grid>
                     </Grid>
-                </Paper>
             </Container>
         </Dialog>
     );
