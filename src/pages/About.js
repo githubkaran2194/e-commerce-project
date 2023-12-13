@@ -1,16 +1,18 @@
-import { Card, CardContent, Container, Grid, Typography } from '@mui/material'
+import { Box, Card, CardContent, Container, Grid, Typography } from '@mui/material'
 import React from 'react'
 import about from '../imges/about.jpg'
 
 const About = () => {
   return (
     <>
-      <Container sx={{ display:"flex", justifyContent:"center", alignItems:"center", height: "100vh" }}>
+      <Container sx={{ display:"flex", justifyContent:"center", alignItems:"center", mt:"90px"}}>
+      <Box>
         <Grid container spacing={4}>
           <Grid item sm={6} md={6} lg={6}>
             <Card sx={{ boxShadow: 3, borderRadius: 2, height: '100%', p:"10px" }}>
               <CardContent>
-                <Typography variant="h4" sx={{ mb: 2, fontSize:"70px", fontWeight:"bolder", fontFamily:"inherit" }}>
+                <Typography sx={{ mb: 2, fontSize:"50px", fontWeight:"bolder", fontFamily:"inherit"
+                }}>
                   About Us
                 </Typography>
                 <Typography variant="body1" sx={{ mb: 3, color:"grey" }}>
@@ -30,6 +32,7 @@ const About = () => {
             />
           </Grid>
         </Grid>
+        </Box>
       </Container>
     </>
   )

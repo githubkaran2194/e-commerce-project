@@ -11,7 +11,6 @@ import Login from './components/Login';
 import SignUp from './components/SignUp';
 import Cart from './pages/Cart';
 import ResetPassword from './components/ResetPassword';
-import Footer from './components/Footer';
 import StartingPop from './pages/StartingPop';
 
 function App() {
@@ -62,7 +61,6 @@ function App() {
             element={<h1>page not found</h1>}
           />
         </Routes>
-        <Footer />
       </BrowserRouter>
     </>
   );

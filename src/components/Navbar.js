@@ -146,11 +146,6 @@ const Navbar = ({ cart, handleLogout, isLoggedIn }) => {
             </Link>
           </ListItem>
           <ListItem>
-            <Link to="/cart" style={{ textDecoration: 'none', color: 'white' }} onClick={() => setDrawer(false)}>
-              <Badge badgeContent={cart.length} variant="standard" color="error">
-                <ShoppingCart sx={{ '&.MuiSvgIcon-root': { fontSize: '60px' } }} />
-              </Badge>
-            </Link>
           </ListItem>
         </List>
       </Drawer>

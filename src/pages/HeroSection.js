@@ -29,6 +29,7 @@ const HeroSection = () => {
                                 backgroundColor: 'primary.main',
                                 color: 'white',
                                 mt: '20px',  
+                                textDecoration:'none'
                             }}
                         >
                             Explore Now

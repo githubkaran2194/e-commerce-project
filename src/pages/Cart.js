@@ -25,7 +25,7 @@ const Checkout = ({ cart, setCart }) => {
     };
 
   return (
-    <Box sx={{ textAlign: 'center' ,display:"flex", justifyContent:"center", alignItems:"center", height:"100vh"}}>
+    <Box sx={{ textAlign: 'center' ,display:"flex", justifyContent:"center", alignItems:"center", m:"60px 0"}}>
      <Container>
      {cart.length === 0 ? (
       <Typography variant="h5" sx={{ fontWeight: "bold", fontFamily: "monospace", color: "white" }}>
