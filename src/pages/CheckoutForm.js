@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
-import { Grid, TextField, FormControl, InputLabel, Select, MenuItem, Box, Button, Typography, Container } from '@mui/material';
+import { Grid, TextField, FormControl, InputLabel, Select, MenuItem, Box, Button, Typography, Container, Dialog, ButtonGroup } from '@mui/material';
+import {  useNavigate } from 'react-router-dom';
 
-const CheckoutForm = () => {
+const CheckoutForm = ({openCheckout, setOpenCheckout}) => {
 
+  const navigate = useNavigate();
   const [address, setAddress] = useState({
     fName: '',
     lName: '',
@@ -44,10 +46,12 @@ const CheckoutForm = () => {
       } else {
         alert('Successfully entered!');
       } 
-  }
+  };
+
+
   return (
-    <Box>
-   <Container>
+    <Dialog open={openCheckout} onClose={()=>setOpenCheckout(false)}>
+   <Container sx={{p:"10px"}}>
    <Typography sx={{ fontFamily: 'monospace', fontWeight: 'bold', fontSize: '26px' }}>Shipping Address</Typography>
    <Grid container spacing={2} sx={{ p: '20px' }}>
      <Grid item xs={12} sm={6}>
@@ -186,10 +190,10 @@ const CheckoutForm = () => {
        />
      </Grid>
    </Grid>
-
-   <Button variant='contained' onClick={handleSubmit}>Submit</Button>
+   <Button variant='contained' onClick={handleSubmit} size='small'>Submit</Button> &nbsp;
+   <Button variant='contained' color='error' size='small' onClick={()=>setOpenCheckout(false)}>Close</Button>
    </Container>
-    </Box>
+    </Dialog>
   );
 };
 

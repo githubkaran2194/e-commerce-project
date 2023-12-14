@@ -3,8 +3,12 @@ import { Link } from 'react-router-dom';
 import {
   AppBar,
   Badge,
+  Button,
   ButtonGroup,
   Container,
+  Dialog,
+  DialogActions,
+  DialogTitle,
   Drawer,
   IconButton,
   List,
@@ -12,9 +16,9 @@ import {
   Toolbar,
   Typography,
 } from '@mui/material';
-import { AccountCircle, Close, Login, Logout, Menu, ShoppingCart } from '@mui/icons-material';
+import { AccountCircle, Close, Logout, Menu, ShoppingCart } from '@mui/icons-material';
 
-const Navbar = ({ cart, handleLogout, isLoggedIn }) => {
+const Navbar = ({ cart, handleLogout, isLoggedIn, logoutAlert, setLogoutAlert, handleLogoutDialog }) => {
   const [drawer, setDrawer] = useState(false);
 
   return (
@@ -63,7 +67,7 @@ const Navbar = ({ cart, handleLogout, isLoggedIn }) => {
                 <IconButton
                   color="inherit"
                   variant="text"
-                  onClick={handleLogout}
+                  onClick={handleLogoutDialog}
                   sx={{ marginX: '10px' }}
                 >
                   <Logout />
@@ -149,6 +153,15 @@ const Navbar = ({ cart, handleLogout, isLoggedIn }) => {
           </ListItem>
         </List>
       </Drawer>
+
+      <Dialog open={logoutAlert} onClose={() => setLogoutAlert(false)}>
+        <DialogTitle>Are you sure ..?</DialogTitle>
+        <DialogActions>
+          <Button onClick={handleLogout}>Logout</Button>
+          <Button onClick={()=>setLogoutAlert(false)}>Close
+          </Button>     
+          </DialogActions>
+      </Dialog>
     </>
   );
 };

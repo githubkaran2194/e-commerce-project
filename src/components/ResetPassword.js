@@ -45,7 +45,7 @@ const ResetPassword = () => {
                             setEmail(e.target.value);
                             setError(null); 
                         }}
-                        error={Boolean(error)}
+                        error={(error)}
                         helperText={error}
                     />
                     <Button
@@ -57,7 +57,7 @@ const ResetPassword = () => {
                     >
                         Reset Password
                     </Button>
-                    <Link to="/signin">
+                    <Link to="/login">
                         <Button sx={{ mt: '10px' }}>Back to Login</Button>
                     </Link>
                 </Paper>

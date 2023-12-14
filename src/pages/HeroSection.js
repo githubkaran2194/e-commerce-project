@@ -6,15 +6,15 @@ import { Link } from 'react-router-dom';
 const HeroSection = () => {
     return (
         <Container sx={{ display: "flex", justifyContent: "center", alignItems: "center", height: "100vh" }} className='home' >
-            <Grid container spacing={4}>
-                <Grid item sm={8} sx={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
+            <Grid container spacing={2}>
+                <Grid item xs={12} sm={6} md={8} sx={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
                     <Typography
                         component="h1"
                         variant="h3"
                         fontSize="4rem"
                         fontWeight="bolder"
                         color="white"
-                        sx={{ mt: "50px" }}
+                        sx={{ mt: { xs: "50px", sm: 0 }, mb: { xs: 0, sm: "20px" } }}
                     >
                         Discover Your Style
                     </Typography>
@@ -35,7 +35,7 @@ const HeroSection = () => {
                         </Button>
                     </Link>
                 </Grid>
-                <Grid item sm={4}>
+                <Grid item xs={12} sm={6} md={4} sx={{ display: 'flex', justifyContent: 'center' }}>
                     <img
                         src={heroImage}
                         alt="Fashion"
@@ -47,4 +47,4 @@ const HeroSection = () => {
     );
 }
 
-export default HeroSection;
+export default HeroSection

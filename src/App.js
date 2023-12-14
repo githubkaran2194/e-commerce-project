@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+
 import './App.css';
 import Navbar from './components/Navbar';
 import Home from './pages/Home';
@@ -12,10 +13,13 @@ import SignUp from './components/SignUp';
 import Cart from './pages/Cart';
 import ResetPassword from './components/ResetPassword';
 import StartingPop from './pages/StartingPop';
+import CheckoutForm from './pages/CheckoutForm';
+import Footer from './components/Footer';
 
 function App() {
   const [cart, setCart] = useState([]);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [logoutAlert, setLogoutAlert] = useState(false);
 
   const addToCart = (product) => {
     const existingProductIndex = cart.findIndex((item) => item.id === product.id);
@@ -29,47 +33,35 @@ function App() {
     }
   };
 
-  const handleLogout = () => {
-    setIsLoggedIn(false);
+  const handleLogoutDialog = () => {
+    setLogoutAlert(true);
   };
 
+  const handleLogout = () => {
+    setIsLoggedIn(false);
+    setLogoutAlert(false)
+  }
   return (
-    <>
-      <StartingPop />
-      <BrowserRouter>
-        <Navbar cart={cart} handleLogout={handleLogout} isLoggedIn={isLoggedIn}/>
+    <Router>
+      <>
+        <StartingPop />
+        <Navbar cart={cart} handleLogout={handleLogout} handleLogoutDialog={handleLogoutDialog} isLoggedIn={isLoggedIn} logoutAlert={logoutAlert} setLogoutAlert={setLogoutAlert} />
         <Routes>
-          <Route
-            path="/login"
-            element={<Login setIsLoggedIn={setIsLoggedIn} />}
-          />
-          <Route path='/reset password' element={<ResetPassword />} />
+          <Route path="/login" element={<Login setIsLoggedIn={setIsLoggedIn} />} />
+          <Route path='/reset-password' element={<ResetPassword />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
-          <Route
-            path="/product"
-            element={<Product addToCart={addToCart} />}
-          />
-          <Route
-            path="/productDetails/:id"
-            element={<PageDetail addToCart={addToCart} />}
-          />
-          <Route
-            path="/contact"
-            element={<Contact />}
-          />
-          <Route
-            path="/cart"
-            element={<Cart cart={cart} setCart={setCart} />}
-          />
-          <Route
-            path="*"
-            element={<h1>page not found</h1>}
-          />
+          <Route path="/product" element={<Product addToCart={addToCart} />} />
+          <Route path="/productDetails/:id" element={<PageDetail addToCart={addToCart} />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/cart" element={<Cart cart={cart} setCart={setCart} isLoggedIn={isLoggedIn} />} />
+          <Route path="/checkout" element={<CheckoutForm />} />
+          <Route path="*" element={<h1>Page not found</h1>} />
         </Routes>
-      </BrowserRouter>
-    </>
+        <Footer/>
+      </>
+    </Router>
   );
 }
 

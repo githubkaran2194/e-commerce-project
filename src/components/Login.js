@@ -71,7 +71,7 @@ const Login = ({ setIsLoggedIn }) => {
           Login
         </Button>
         <Typography component="p" sx={{ fontSize: 'small', textAlign: 'center', m: '20px', color: 'grey' }}>
-        <Link to="/reset password" style={{ textDecoration: 'none'}}>
+        <Link to="/reset-password" style={{ textDecoration: 'none'}}>
           forgot password ?
         </Link>
       </Typography>
