@@ -4,23 +4,22 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import './App.css';
 import Navbar from './components/Navbar';
 import Home from './pages/Home';
-import About from './pages/About';
 import Product from './pages/Product';
 import Contact from './pages/Contact';
 import PageDetail from './pages/PageDetail';
-import Login from './components/Login';
+import Login from './components/Login'; 
 import SignUp from './components/SignUp';
 import Cart from './pages/Cart';
 import ResetPassword from './components/ResetPassword';
 import StartingPop from './pages/StartingPop';
 import CheckoutForm from './pages/CheckoutForm';
 import Footer from './components/Footer';
+import OrderConfirm from './components/OrderConfirm';
 
 function App() {
   const [cart, setCart] = useState([]);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [logoutAlert, setLogoutAlert] = useState(false);
-
   const addToCart = (product) => {
     const existingProductIndex = cart.findIndex((item) => item.id === product.id);
 
@@ -41,6 +40,7 @@ function App() {
     setIsLoggedIn(false);
     setLogoutAlert(false)
   }
+
   return (
     <Router>
       <>
@@ -51,18 +51,17 @@ function App() {
           <Route path='/reset-password' element={<ResetPassword />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
           <Route path="/product" element={<Product addToCart={addToCart} />} />
           <Route path="/productDetails/:id" element={<PageDetail addToCart={addToCart} />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/cart" element={<Cart cart={cart} setCart={setCart} isLoggedIn={isLoggedIn} />} />
-          <Route path="/checkout" element={<CheckoutForm />} />
+          <Route path="/checkout" element={<CheckoutForm/>} />
           <Route path="*" element={<h1>Page not found</h1>} />
         </Routes>
         <Footer/>
       </>
     </Router>
   );
-}
+  }
 
 export default App;

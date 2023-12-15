@@ -23,9 +23,9 @@ const Navbar = ({ cart, handleLogout, isLoggedIn, logoutAlert, setLogoutAlert, h
 
   return (
     <>
-      <Container>
-        <AppBar color="primary" elevation={0}>
-          <Toolbar sx={{ justifyContent: 'space-between', alignItems: 'center' }}>
+      <Container maxWidth='xs'>
+        <AppBar elevation={0} sx={{ background: "#232f3e" }}>
+          <Toolbar sx={{ justifyContent: 'space-between', alignItems: 'center' }} >
             <Link to={'/'} style={{ textDecoration: 'none' }}>
               <Typography variant="h6" sx={{ fontWeight: 'bold', color: '#FFD700' }}>
                 SHOPPER
@@ -39,15 +39,12 @@ const Navbar = ({ cart, handleLogout, isLoggedIn, logoutAlert, setLogoutAlert, h
                   '& a': {
                     textDecoration: 'none',
                     color: 'white',
-                    fontWeight: 'bold',
+                    fontWeight: '600px',
                   },
                 }}
               >
                 <ListItem>
                   <Link to="/">Home</Link>
-                </ListItem>
-                <ListItem>
-                  <Link to="/about">About</Link>
                 </ListItem>
                 <ListItem>
                   <Link to="/product">Products</Link>
@@ -58,25 +55,24 @@ const Navbar = ({ cart, handleLogout, isLoggedIn, logoutAlert, setLogoutAlert, h
               </List>
             </ButtonGroup>
             <ButtonGroup sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-              <Link to="/cart" style={{ textDecoration: 'none', color: 'white' }}>
-                <Badge badgeContent={cart.length} variant="standard" color="error">
-                  <ShoppingCart />
+              <Link to="/cart" style={{ textDecoration: 'none' }}>
+                <Badge badgeContent={cart.length} variant="standard" color='primary' >
+                  <ShoppingCart sx={{ color: "white" }} />
                 </Badge>
               </Link>
               {isLoggedIn ? (
                 <IconButton
-                  color="inherit"
                   variant="text"
                   onClick={handleLogoutDialog}
-                  sx={{ marginX: '10px' }}
+                  sx={{ marginX: '10px', color: "white" }}
                 >
                   <Logout />
                 </IconButton>
               ) : (
                 <Link to={'/signup'}> <IconButton
-                  color="inherit"
+                  color="white"
                   variant="text"
-                  sx={{ marginX: '10px' }}
+                  sx={{ marginX: '10px', color: 'white' }}
                 > <AccountCircle />
                 </IconButton></Link>
               )}
@@ -135,11 +131,6 @@ const Navbar = ({ cart, handleLogout, isLoggedIn, logoutAlert, setLogoutAlert, h
             </Link>
           </ListItem>
           <ListItem>
-            <Link to="/about" onClick={() => setDrawer(false)}>
-              About
-            </Link>
-          </ListItem>
-          <ListItem>
             <Link to="/product" onClick={() => setDrawer(false)}>
               Products
             </Link>
@@ -158,9 +149,9 @@ const Navbar = ({ cart, handleLogout, isLoggedIn, logoutAlert, setLogoutAlert, h
         <DialogTitle>Are you sure ..?</DialogTitle>
         <DialogActions>
           <Button onClick={handleLogout}>Logout</Button>
-          <Button onClick={()=>setLogoutAlert(false)}>Close
-          </Button>     
-          </DialogActions>
+          <Button onClick={() => setLogoutAlert(false)}>Close
+          </Button>
+        </DialogActions>
       </Dialog>
     </>
   );
