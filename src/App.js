@@ -14,7 +14,6 @@ import ResetPassword from './components/ResetPassword';
 import StartingPop from './pages/StartingPop';
 import CheckoutForm from './pages/CheckoutForm';
 import Footer from './components/Footer';
-import OrderConfirm from './components/OrderConfirm';
 
 function App() {
   const [cart, setCart] = useState([]);

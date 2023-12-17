@@ -68,7 +68,7 @@ const Checkout = ({ cart, setCart, isLoggedIn }) => {
                           <TableRow key={item.id}>
                             <TableCell component="th" scope="row">
                               <Link to={`/productDetails/${item.id}`} key={item.id}>
-                                <img src={item.image} alt={item.title} width={100} />
+                                <img src={item.thumbnail} alt={item.title} width={100} />
                               </Link>
                             </TableCell>
                             <TableCell align="center">{item.title}</TableCell>

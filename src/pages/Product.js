@@ -1,64 +1,40 @@
-import {
-  Box,
-  Button,
-  Card,
-  CardActions,
-  CardContent,
-  CardMedia,
-  Container,
-  Grid,
-  Typography,
-} from "@mui/material";
-import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { Box, Button, Card, CardActions, CardContent, CardMedia, Container, Grid, Typography } from "@mui/material";
+import axios from "axios";
 import FilterSection from "./FilterSection";
 import { ToastContainer, toast } from "react-toastify";
-import CircularProgress from "@mui/material/CircularProgress/CircularProgress";
+import CircularProgress from "@mui/material/CircularProgress";
 
 const Product = ({ addToCart }) => {
   const [loading, setLoading] = useState(false);
-
   const [data, setData] = useState([]);
-
-  const img = {
-  objectFit: "contain",
-  width: "100%",
-  transition: "transform 0.5s",
-  "&:hover": {
-    transform: "scale(1.1)",
-  },
-};
-
+  const [filterData, setFilterData] = useState([]);
 
   const navigate = useNavigate();
 
   const handleSubmit = (id) => {
     navigate(`/productDetails/${id}`);
-    console.log(id);
   };
 
   useEffect(() => {
-  const apiUrl = `https://fakestoreapi.com/products/`;
+    const apiUrl = `https://6437a3340c58d3b145754311.mockapi.io/API/products`;
 
-  const fetchProduct = async () => {
-    setLoading(true)
-    try {
-      const response = await axios.get(apiUrl);
-      setData(response.data);
-      setLoading(false);
-      setFilterData(response.data);
-    } catch (error) {
-      setLoading(true)
-      alert(error);
-    }
-  };
+    const fetchProduct = async () => {
+      setLoading(true);
+      try {
+        const response = await axios.get(apiUrl);
+        setData(response.data);
+        setFilterData(response.data);
+      } catch (error) {
+        alert(error);
+      } finally {
+        setLoading(false);
+      }
+    };
 
-  fetchProduct();
-}, []);
-
-
-  const [filterData, setFilterData] = useState([]);
+    fetchProduct();
+  }, []);
 
   const handleFilter = (category) => {
     if (category === "All") {
@@ -72,7 +48,7 @@ const Product = ({ addToCart }) => {
   };
 
   return (
-    <Container sx={{ m: "10px 0" }}>
+    <Container sx={{ mt: "10px", display: "flex", flexDirection: "column", alignItems: "center" }}>
       <FilterSection handleFilter={handleFilter} />
       {loading ? (
         <Box
@@ -80,11 +56,16 @@ const Product = ({ addToCart }) => {
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
+            height: "70vh",
           }}
         >
-          <CircularProgress variant="indeterminate" color="inherit" />{" "}
+          <CircularProgress variant="indeterminate" color="inherit" />
         </Box>
-      ) :(
+      ) : filterData === null || filterData.length === 0 ? (
+        <Typography variant="h6" color="text.secondary" sx={{ mt: 4 }}>
+          No products found.
+        </Typography>
+      ) : (
         <Grid container spacing={3}>
           {filterData.map((item) => (
             <Grid
@@ -107,17 +88,23 @@ const Product = ({ addToCart }) => {
               >
                 <CardMedia
                   component="img"
-                  src={item.image}
+                  src={item.thumbnail}
                   alt={item.title}
                   height="140"
-                  sx={img}
+                  sx={productStyles.img}
                   onClick={() => handleSubmit(item.id)}
                 />
                 <CardContent sx={{ flexGrow: 1 }}>
-                  <Typography component="div" fontSize={"16px"}>
+                  <Typography component="div" fontSize={"16px"} color="primary">
                     {item.title}
                   </Typography>
-                  <Typography color="text.secondary">${item.price}</Typography>
+                  <Typography color="text.secondary" sx={{ color: "secondary.main" }}>
+                    {item.brand}
+                  </Typography>
+                  <Typography color="text.secondary">
+                    stock <span style={{ fontWeight: "bold", color: "success.main" }}>{item.stock}</span>
+                  </Typography>
+                  <Typography color="text.primary">${item.price}</Typography>
                 </CardContent>
                 <CardActions>
                   <Button
@@ -141,9 +128,20 @@ const Product = ({ addToCart }) => {
             </Grid>
           ))}
         </Grid>
-      ) }
+      )}
     </Container>
   );
+};
+
+const productStyles = {
+  img: {
+    objectFit: "contain",
+    width: "100%",
+    transition: "transform 0.5s",
+    "&:hover": {
+      transform: "scale(1.1)",
+    },
+  },
 };
 
 export default Product;
