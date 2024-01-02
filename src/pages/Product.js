@@ -48,7 +48,7 @@ const Product = ({ addToCart }) => {
   };
 
   return (
-    <Container sx={{ mt: "10px", display: "flex", flexDirection: "column", alignItems: "center" }}>
+    <Container sx={{ mb: "10px ", display: "flex", flexDirection: "column", alignItems: "center" }}>
       <FilterSection handleFilter={handleFilter} />
       {loading ? (
         <Box

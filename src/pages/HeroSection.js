@@ -16,7 +16,7 @@ const HeroSection = () => {
                             color="white"
                             sx={{ mt: { xs: "20px", sm: 3 }, mb: { xs: "20px", sm: "0px" }, textTransform: "uppercase", letterSpacing: "2px" }}
                         >
-                            Summer collection
+                            All collection
                         </Typography>
                         <Typography
                             component="h2"
@@ -38,9 +38,9 @@ const HeroSection = () => {
                                 sx={{
                                     color: 'white',
                                     backgroundColor: "black",
-                                    mt: '20px',
+                                    m:"20px 0",
                                     padding: "8px 20px",
-                                    letterSpacing: "2px",
+                                    letterSpacing: "6px",
                                 }}
                             >
                                 Shop now →
