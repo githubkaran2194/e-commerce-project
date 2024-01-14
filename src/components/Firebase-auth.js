@@ -2,14 +2,16 @@ import { initializeApp } from "firebase/app";
 import {getAuth} from "firebase/auth";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyDxhDhyNbvepE41xPAAgxRlZGyeTbaP23E",
-  authDomain: "fir-auth-2194.firebaseapp.com",
-  projectId: "fir-auth-2194",
-  storageBucket: "fir-auth-2194.appspot.com",
-  messagingSenderId: "65770351402",
-  appId: "  1:65770351402:web:05839932f9bbfe14098c53",
-  measurementId: "G-RSZ0DDQ9MY"
+  apiKey: "AIzaSyCbX_Zdbfa0Dw3lab6tp1KGhRdxG4KJEM8",
+  authDomain: "e-commerce-889c3.firebaseapp.com",
+  databaseURL: "https://e-commerce-889c3-default-rtdb.firebaseio.com",
+  projectId: "e-commerce-889c3",
+  storageBucket: "e-commerce-889c3.appspot.com",
+  messagingSenderId: "292186128845",
+  appId: "1:292186128845:web:51c059bf23ca3bb10bc484",
+  measurementId: "G-SLBYDLEXV0"
 };
+
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth();

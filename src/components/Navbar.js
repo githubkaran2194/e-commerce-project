@@ -14,9 +14,11 @@ import {
   List,
   ListItem,
   Toolbar,
+  Tooltip,
   Typography,
 } from '@mui/material';
 import { AccountCircle, Close, Logout, Menu, ShoppingCart } from '@mui/icons-material';
+import AccountInfo from './AccountInfo';
 
 const Navbar = ({ cart, handleLogout, isLoggedIn, logoutAlert, setLogoutAlert, handleLogoutDialog }) => {
   const [drawer, setDrawer] = useState(false);
@@ -28,7 +30,7 @@ const Navbar = ({ cart, handleLogout, isLoggedIn, logoutAlert, setLogoutAlert, h
           <Toolbar sx={{ justifyContent: 'space-between', alignItems: 'center' }} >
             <Link to={'/'} style={{ textDecoration: 'none' }}>
               <Typography variant="h6" sx={{ fontWeight: 'bold', color: '#FFD700' }}>
-                SHOPPER
+                QuickShop
               </Typography>
             </Link>
             <ButtonGroup sx={{ display: { xs: 'none', md: 'flex' }, alignItems: 'center' }}>
@@ -39,7 +41,7 @@ const Navbar = ({ cart, handleLogout, isLoggedIn, logoutAlert, setLogoutAlert, h
                   '& a': {
                     textDecoration: 'none',
                     color: 'white',
-                    fontWeight: '600px',
+                    fontWeight: 'bold',  // Adjusted fontWeight value
                   },
                 }}
               >
@@ -56,25 +58,31 @@ const Navbar = ({ cart, handleLogout, isLoggedIn, logoutAlert, setLogoutAlert, h
             </ButtonGroup>
             <ButtonGroup sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
               <Link to="/cart" style={{ textDecoration: 'none' }}>
-                <Badge badgeContent={cart.length} variant="standard" color='primary' >
+                <Badge badgeContent={cart.length} variant="standard" color='primary'>
                   <ShoppingCart sx={{ color: "white" }} />
                 </Badge>
               </Link>
               {isLoggedIn ? (
-                <IconButton
-                  variant="text"
-                  onClick={handleLogoutDialog}
-                  sx={{ marginX: '10px', color: "white" }}
-                >
-                  <Logout />
-                </IconButton>
+                <Tooltip title="Logout">
+                  <IconButton
+                    variant="text"
+                    onClick={handleLogoutDialog}
+                    sx={{ marginX: '10px', color: "white" }}
+                  >
+                    <Logout />
+                  </IconButton>
+                </Tooltip>
               ) : (
-                <Link to={'/signup'}> <IconButton
-                  color="white"
-                  variant="text"
-                  sx={{ marginX: '10px', color: 'white' }}
-                > <AccountCircle />
-                </IconButton></Link>
+                <Tooltip title="Login">
+                  <Link to='/login'>       
+                   <IconButton
+                    color="white"
+                    variant="text"
+                    sx={{ marginX: '10px', color: 'white' }}
+                  >
+                    <AccountCircle />
+                  </IconButton></Link>
+                </Tooltip>
               )}
               <IconButton
                 onClick={() => setDrawer(true)}
@@ -85,8 +93,7 @@ const Navbar = ({ cart, handleLogout, isLoggedIn, logoutAlert, setLogoutAlert, h
             </ButtonGroup>
           </Toolbar>
         </AppBar>
-      </Container >
-
+      </Container>
       <Drawer
         open={drawer}
         onClose={() => setDrawer(false)}
@@ -103,7 +110,7 @@ const Navbar = ({ cart, handleLogout, isLoggedIn, logoutAlert, setLogoutAlert, h
           variant="h4"
           sx={{ textAlign: 'center', marginY: '30px', fontWeight: 'bold', color: '#FFD700' }}
         >
-          SHOPPER
+          QuickShop
         </Typography>
         <hr style={{ width: '100%', borderTop: '1px solid #707070' }} />
         <List
@@ -140,8 +147,6 @@ const Navbar = ({ cart, handleLogout, isLoggedIn, logoutAlert, setLogoutAlert, h
               Contact
             </Link>
           </ListItem>
-          <ListItem>
-          </ListItem>
         </List>
       </Drawer>
 
@@ -149,8 +154,7 @@ const Navbar = ({ cart, handleLogout, isLoggedIn, logoutAlert, setLogoutAlert, h
         <DialogTitle>Are you sure ..?</DialogTitle>
         <DialogActions>
           <Button onClick={handleLogout}>Logout</Button>
-          <Button onClick={() => setLogoutAlert(false)}>Close
-          </Button>
+          <Button onClick={() => setLogoutAlert(false)}>Close</Button>
         </DialogActions>
       </Dialog>
     </>

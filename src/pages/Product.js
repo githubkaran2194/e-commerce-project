@@ -5,6 +5,8 @@ import axios from "axios";
 import FilterSection from "./FilterSection";
 import { ToastContainer, toast } from "react-toastify";
 import CircularProgress from "@mui/material/CircularProgress";
+import Spinner from "react-spinner";
+import { PulseLoader, RingLoader } from "react-spinners";
 
 const Product = ({ addToCart }) => {
   const [loading, setLoading] = useState(false);
@@ -59,7 +61,7 @@ const Product = ({ addToCart }) => {
             height: "70vh",
           }}
         >
-          <CircularProgress variant="indeterminate" color="inherit" />
+        <PulseLoader color="white" size={40}/>
         </Box>
       ) : filterData === null || filterData.length === 0 ? (
         <Typography variant="h6" color="text.secondary" sx={{ mt: 4 }}>

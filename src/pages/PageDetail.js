@@ -2,6 +2,7 @@ import { Button, Card, CardActions, CardContent, CardMedia, Container, Grid, Sna
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
+import { PulseLoader } from 'react-spinners';
 
 const PageDetail = ({ addToCart }) => {
     const { id } = useParams();
@@ -18,6 +19,7 @@ const PageDetail = ({ addToCart }) => {
                 const response = await axios.get(apiUrl);
                 const productData = response.data[id - 1]; 
                 setProduct([productData]);
+                setLoading(true)
             } catch (error) {
                alert(error);
                 setError(error.message || 'An error occurred while fetching the product.');
@@ -35,7 +37,7 @@ const PageDetail = ({ addToCart }) => {
     };
 
     if (loading) {
-        return <p>Loading...</p>;
+        return <PulseLoader/>
     }
 
     return (

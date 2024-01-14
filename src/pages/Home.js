@@ -1,5 +1,6 @@
 import React from "react";
 import HeroSection from "./HeroSection";
+import FeaturedProducts from "./FeaturedProducts";
 
 const Home = () => {
 
@@ -7,6 +8,7 @@ const Home = () => {
   return (
     <>
     <HeroSection />
+    <FeaturedProducts/>
     </>
   );
 };
