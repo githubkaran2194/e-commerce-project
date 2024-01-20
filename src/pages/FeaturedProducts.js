@@ -57,7 +57,7 @@ const FeaturedProducts = () => {
                         sx={{
                             cursor: 'pointer',
                             height: "100%",
-                            m:"20px",
+                            m:"10px",
                             '&:hover': {
                                 '& img': {
                                     transform: 'scale(1.1)',
