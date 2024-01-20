@@ -32,7 +32,7 @@ const StartingPop = () => {
                     </Grid>
                     <Grid item xs={12} md={8}>
                         <Typography variant="h5" align="center" sx={{ p: 2 }}>
-                            Welcome to Our SHOPPER!
+                            Welcome to Our QuickShop!
                         </Typography>
                         <Typography variant="body1" align="center" sx={{ p: 2 }}>
                             Thank you for visiting. Enjoy your experience!

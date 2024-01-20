@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Grid, TextField, FormControl, InputLabel, Select, MenuItem, Box, Button, Typography, Container, Dialog } from '@mui/material';
+import OrderConfirm from '../components/OrderConfirm';
 
 const CheckoutForm = ({ openCheckout, setOpenCheckout}) => {
   const [orderDone, setOrderDone] = useState(false);
@@ -34,19 +35,22 @@ const CheckoutForm = ({ openCheckout, setOpenCheckout}) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const requiredAddressFields = ['fName', 'lName', 'address', 'city', 'postalCode', 'country', 'state'];
-    const missingAddressFields = requiredAddressFields.filter(field => address[field].trim() === '');
+    // const requiredAddressFields = ['fName', 'lName', 'address', 'city', 'postalCode', 'country', 'state'];
+    // const missingAddressFields = requiredAddressFields.filter(field => address[field].trim() === '');
 
-    const requiredCreditCardFields = ['cardholderName', 'cardNumber', 'expiryDate', 'cvv'];
-    const missingCreditCardFields = requiredCreditCardFields.filter(field => creditCard[field].trim() === '');
+    // const requiredCreditCardFields = ['cardholderName', 'cardNumber', 'expiryDate', 'cvv'];
+    // const missingCreditCardFields = requiredCreditCardFields.filter(field => creditCard[field].trim() === '');
 
-    if (missingAddressFields.length > 0 || missingCreditCardFields.length > 0) {
-      const missingFields = [...missingAddressFields, ...missingCreditCardFields];
-      alert(`Please fill in the following required fields: ${missingFields.join(', ')}`);
-    } else {
-      alert('Successfully entered!');
-      setOpenCheckout(false);
-    }
+    // if (missingAddressFields.length > 0 || missingCreditCardFields.length > 0) {
+    //   const missingFields = [...missingAddressFields, ...missingCreditCardFields];
+    //   alert(`Please fill in the following required fields: ${missingFields.join(', ')}`);
+    // } else {
+    //   alert('Successfully entered!');
+    //   setOpenCheckout(false);
+    // }
+
+    alert("done")
+    setOpenCheckout(false);
   };
 
 
@@ -194,7 +198,12 @@ const CheckoutForm = ({ openCheckout, setOpenCheckout}) => {
         <Button variant='contained' onClick={handleSubmit} size='small'>order placed</Button> &nbsp;
         <Button variant='contained' color='error' size='small' onClick={() => setOpenCheckout(false)}>Close</Button>
       </Container>
+     
+      <Dialog open={orderDone}>
+      <OrderConfirm orderDone={orderDone}/>
+      </Dialog>
     </Dialog>
+
   );
 };
 

@@ -3,7 +3,7 @@ import { Dialog, Grid, Typography } from '@mui/material';
 
 const OrderConfirm = ({ orderDone }) => {
   return (
-    <Dialog open={orderDone}>
+    
       <Grid container spacing={2}>
         {/* First Grid Item */}
         <Grid item xs={12} md={6}>
@@ -17,7 +17,7 @@ const OrderConfirm = ({ orderDone }) => {
           {/* Add your other content here */}
         </Grid>
       </Grid>
-    </Dialog>
+   
   );
 };
 

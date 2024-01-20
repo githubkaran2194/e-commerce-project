@@ -25,17 +25,20 @@ const Checkout = ({ cart, setCart, isLoggedIn }) => {
 
   const handleIncrease = (item) => {
     const updatedCart = cart.map((cartItem) =>
-      cartItem.id === item.id ? { ...cartItem, quantity: cartItem.quantity + 1 } : cartItem
+      cartItem.id === item.id ? { ...cartItem, quantity: (cartItem.quantity || 0) + 1 } : cartItem
     );
     setCart(updatedCart);
   };
-
+  
   const handleDecrease = (item) => {
     const updatedCart = cart.map((cartItem) =>
-      cartItem.id === item.id && cartItem.quantity > 1 ? { ...cartItem, quantity: cartItem.quantity - 1 } : cartItem
+      cartItem.id === item.id && (cartItem.quantity || 0) > 1
+        ? { ...cartItem, quantity: (cartItem.quantity || 0) - 1 }
+        : cartItem
     );
     setCart(updatedCart);
   };
+  
 
   return (
     <Box sx={{ textAlign: 'center', display: 'flex', justifyContent: 'center', alignItems: 'center', m: '60px 0' }}>

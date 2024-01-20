@@ -10,7 +10,7 @@ const categories = [
   'groceries',
   'home-decoration',
   'furniture',
-  'Lopstops',
+  'Laptops',  
   'womens-dresses',
   'mens-shirts',
   'womens-shoes',
@@ -38,7 +38,7 @@ const FilterSection = ({ handleFilter }) => {
       sx={{
         display: 'flex',
         flexWrap: 'wrap',
-        margin: { xs: '70px 0', sm: '60px', md: '70px' },
+        margin: '70px 0',  
       }}
     >
       <Box>

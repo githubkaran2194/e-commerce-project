@@ -18,7 +18,6 @@ import {
   Typography,
 } from '@mui/material';
 import { AccountCircle, Close, Logout, Menu, ShoppingCart } from '@mui/icons-material';
-import AccountInfo from './AccountInfo';
 
 const Navbar = ({ cart, handleLogout, isLoggedIn, logoutAlert, setLogoutAlert, handleLogoutDialog }) => {
   const [drawer, setDrawer] = useState(false);
@@ -26,22 +25,39 @@ const Navbar = ({ cart, handleLogout, isLoggedIn, logoutAlert, setLogoutAlert, h
   return (
     <>
       <Container maxWidth='xs'>
-        <AppBar elevation={0} sx={{ background: "#232f3e" }}>
-          <Toolbar sx={{ justifyContent: 'space-between', alignItems: 'center' }} >
+        <AppBar
+          elevation={0}
+          className='navbar'
+          sx={{
+            backgroundColor: "#FBAB7E",
+            backgroundImage: "linear-gradient(62deg, #FBAB7E 0%, #F7CE68 100%)",
+          }}
+        >
+          <Toolbar sx={{ justifyContent: 'space-between', alignItems: 'center' }}>
             <Link to={'/'} style={{ textDecoration: 'none' }}>
-              <Typography variant="h6" sx={{ fontWeight: 'bold', color: '#FFD700' }}>
+              <Typography variant="h6" sx={{ fontWeight: 'bold', color: '#2F2626', "&:hover": { color: '#FFD700' } }}>
                 QuickShop
               </Typography>
             </Link>
-            <ButtonGroup sx={{ display: { xs: 'none', md: 'flex' }, alignItems: 'center' }}>
+            <ButtonGroup
+              sx={{
+                display: { xs: 'none', md: 'flex' },
+                alignItems: 'center',
+              }}
+            >
               <List
                 sx={{
                   display: 'flex',
                   gap: '1rem',
                   '& a': {
                     textDecoration: 'none',
-                    color: 'white',
-                    fontWeight: 'bold',  // Adjusted fontWeight value
+                    color: '#2F2626',
+                    fontWeight: 'bold',
+                    fontSize: '1rem',
+                    transition: 'color 0.3s',
+                    '&:hover': {
+                      color: 'red',
+                    },
                   },
                 }}
               >
@@ -59,7 +75,7 @@ const Navbar = ({ cart, handleLogout, isLoggedIn, logoutAlert, setLogoutAlert, h
             <ButtonGroup sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
               <Link to="/cart" style={{ textDecoration: 'none' }}>
                 <Badge badgeContent={cart.length} variant="standard" color='primary'>
-                  <ShoppingCart sx={{ color: "white" }} />
+                  <ShoppingCart sx={{ color: "white", "&:hover": { color: '#FFD700' } }} />
                 </Badge>
               </Link>
               {isLoggedIn ? (
@@ -67,28 +83,29 @@ const Navbar = ({ cart, handleLogout, isLoggedIn, logoutAlert, setLogoutAlert, h
                   <IconButton
                     variant="text"
                     onClick={handleLogoutDialog}
-                    sx={{ marginX: '10px', color: "white" }}
+                    sx={{ marginX: '10px', color: "white", "&:hover": { color: '#FFD700' } }}
                   >
                     <Logout />
                   </IconButton>
                 </Tooltip>
               ) : (
                 <Tooltip title="Login">
-                  <Link to='/login'>       
-                   <IconButton
-                    color="white"
-                    variant="text"
-                    sx={{ marginX: '10px', color: 'white' }}
-                  >
-                    <AccountCircle />
-                  </IconButton></Link>
+                  <Link to='/login'>
+                    <IconButton
+                      color="#2F2626"
+                      variant="text"
+                      sx={{ marginX: '10px', color: 'white', "&:hover": { color: '#FFD700' } }}
+                    >
+                      <AccountCircle />
+                    </IconButton>
+                  </Link>
                 </Tooltip>
               )}
               <IconButton
                 onClick={() => setDrawer(true)}
                 sx={{ display: { xs: 'block', md: 'none' }, marginX: '10px' }}
               >
-                <Menu sx={{ color: 'white' }} />
+                <Menu sx={{ color: '#2F2626' }} />
               </IconButton>
             </ButtonGroup>
           </Toolbar>
@@ -99,7 +116,7 @@ const Navbar = ({ cart, handleLogout, isLoggedIn, logoutAlert, setLogoutAlert, h
         onClose={() => setDrawer(false)}
         anchor="right"
         sx={{
-          '& .MuiDrawer-paper': { width: '100%', background: '#303030', color: 'white' },
+          '& .MuiDrawer-paper': { width: '100%', color: '#2F2626' },
         }}
       >
         <Close
@@ -120,7 +137,7 @@ const Navbar = ({ cart, handleLogout, isLoggedIn, logoutAlert, setLogoutAlert, h
             gap: '1rem',
             '& a': {
               textDecoration: 'none',
-              color: 'white',
+              color: '#2F2626',
               fontSize: '1.5rem',
               fontWeight: 'bold',
               display: 'block',

@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-
 import "./App.css";
 import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
@@ -14,7 +13,7 @@ import ResetPassword from "./components/ResetPassword";
 import StartingPop from "./pages/StartingPop";
 import CheckoutForm from "./pages/CheckoutForm";
 import Footer from "./components/Footer";
-import { HashLoader, PacmanLoader } from "react-spinners";
+import { HashLoader } from "react-spinners";
 import FeaturedProducts from "./pages/FeaturedProducts";
 
 function App() {
@@ -24,16 +23,11 @@ function App() {
   const [loading, setLoading] = useState(true);
 
   const addToCart = (product) => {
-    const existingProductIndex = cart.findIndex(
-      (item) => item.id === product.id
-    );
-
-    if (existingProductIndex !== -1) {
-      const updatedCart = [...cart];
-      updatedCart[existingProductIndex].quantity += 1;
-      setCart(updatedCart);
+    const isPresent = cart.some((item) => item.id === product.id);
+    if (!isPresent) {
+      setCart((prev) => [...prev, product]);
     } else {
-      setCart([...cart, { ...product, quantity: 1 }]);
+      alert("Product is already in the cart");
     }
   };
 

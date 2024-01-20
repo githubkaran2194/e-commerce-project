@@ -4,6 +4,7 @@ import Carousel from 'react-material-ui-carousel';
 import { Link } from 'react-router-dom';
 import { SliderData } from './SilderData';
 import {  Image } from 'react-bootstrap';
+import img from '../imges/Influencer Marketing on Food Products.png'
 
 
 const SliderHome = () => {
@@ -15,7 +16,7 @@ const SliderHome = () => {
         swipe
       >
         {SliderData.map((slider) => (
-          <Box key={slider.id} sx={{ display: "flex", justifyContent: "center", alignItems: "center", minHeight: "100vh", backgroundColor: "white", boxShadow: "0px 0px 10px rgba(0, 0, 0, 0.2)" }}>
+          <Box key={slider.id} sx={{ display: "flex", justifyContent: "center", alignItems: "center", minHeight: "100vh"}}>
             <Container className='home' maxWidth='md'>
               <Grid container spacing={4} sx={{ flexDirection: { xs: 'column-reverse', sm: 'row' } }}>
                 <Grid item xs={12} sm={6} md={6} sx={{ display: 'flex', flexDirection: 'column', justifyContent: "center", alignItems: 'flex-start' }}>
@@ -51,8 +52,8 @@ const SliderHome = () => {
                     </Button>
                   </Link>
                 </Grid>
-                <Grid item xs={12} sm={6} md={6} sx={{ display: 'flex', justifyContent: 'center', mt: { xs: '40px', sm: "20px" } }}>
-                  <Image src={slider.image} alt="wait..." fluid width={"100%"} height={'80%'}/>
+                <Grid item xs={12} sm={6} md={6} sx={{ display: 'flex', justifyContent: 'center', mt: { xs: '20px', sm: "10px" } }}>
+                  <Image src={img} alt="wait..." fluid width={"100%"} style={{mixBlendMode:"multiply"}}/>
                 </Grid>
               </Grid>
             </Container>

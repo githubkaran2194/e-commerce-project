@@ -1,17 +1,26 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Box, Button, Card, CardActions, CardContent, CardMedia, Container, Grid, Typography } from "@mui/material";
+import { Box, Button, Card, CardActions, CardContent, CardMedia, Container, Grid, Pagination, Typography } from "@mui/material";
 import axios from "axios";
 import FilterSection from "./FilterSection";
 import { ToastContainer, toast } from "react-toastify";
-import CircularProgress from "@mui/material/CircularProgress";
-import Spinner from "react-spinner";
-import { PulseLoader, RingLoader } from "react-spinners";
+import { PulseLoader } from "react-spinners";
+import { More, ShoppingCart } from "@mui/icons-material";
 
 const Product = ({ addToCart }) => {
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState([]);
   const [filterData, setFilterData] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 20;
+
+  const LastIndex = currentPage * itemsPerPage;
+  const FirstIndex = LastIndex - itemsPerPage;
+  const currentItem = filterData.slice(FirstIndex, LastIndex);
+
+  const handlePageChange = (event, value) => {
+    setCurrentPage(value);
+  };
 
   const navigate = useNavigate();
 
@@ -47,6 +56,7 @@ const Product = ({ addToCart }) => {
       );
       setFilterData(updatedFilter);
     }
+    setCurrentPage(1); // Reset page when applying a filter
   };
 
   return (
@@ -61,7 +71,7 @@ const Product = ({ addToCart }) => {
             height: "70vh",
           }}
         >
-        <PulseLoader color="white" size={40}/>
+          <PulseLoader color="white" size={40} />
         </Box>
       ) : filterData === null || filterData.length === 0 ? (
         <Typography variant="h6" color="text.secondary" sx={{ mt: 4 }}>
@@ -69,61 +79,57 @@ const Product = ({ addToCart }) => {
         </Typography>
       ) : (
         <Grid container spacing={3}>
-          {filterData.map((item) => (
+          {currentItem.map((item) => (
             <Grid
               item
               key={item.id}
-              xs={12}
-              sm={6}
-              md={4}
+              xs={6}
+              sm={4}
+              md={3}
               lg={3}
               sx={{ mb: "20px" }}
+            > <Card
+              sx={{ height: '100%', m: 1, p: '1px', cursor: "pointer", ':hover': { boxShadow: "0px 0px 10px 0px" } }}
             >
-              <Card
-                sx={{
-                  height: "100%",
-                  display: "flex",
-                  flexDirection: "column",
-                  padding: "10px",
-                  cursor: "pointer",
-                }}
-              >
                 <CardMedia
                   component="img"
-                  src={item.thumbnail}
+                  src={'https://m.media-amazon.com/images/I/31+kqyt854L._AC_SY400_.jpg'}
                   alt={item.title}
                   height="140"
-                  sx={productStyles.img}
+                  sx={{ objectFit: "contain",mt:"10px" }}
                   onClick={() => handleSubmit(item.id)}
                 />
-                <CardContent sx={{ flexGrow: 1 }}>
-                  <Typography component="div" fontSize={"16px"} color="primary">
+                <CardContent sx={{ flexGrow: 1, textAlign: 'center' }}>
+                  <Typography component="div" fontSize={"16px"} color="black" m='10px 0'>
                     {item.title}
                   </Typography>
-                  <Typography color="text.secondary" sx={{ color: "secondary.main" }}>
+                  <Typography color="grey" sx={{ color: "grey" }}>
                     {item.brand}
                   </Typography>
-                  <Typography color="text.secondary">
-                    stock <span style={{ fontWeight: "bold", color: "success.main" }}>{item.stock}</span>
+                  <Typography color="black" fontWeight={'bold'}>
+                    ${item.price.toFixed(2)} {''}
+                    $<span style={{textDecoration:"line-through"}}>{(item.price / (1 - item.discountPercentage / 100)).toFixed(2)}</span>
                   </Typography>
-                  <Typography color="text.primary">${item.price}</Typography>
+                  <Typography color="error">${item.discountPercentage} OFF</Typography>
                 </CardContent>
-                <CardActions>
+                <CardActions sx={{ display: "flex", justifyContent: "center" }}>
                   <Button
                     variant="contained"
                     color="success"
+                    size="small"
                     onClick={() => addToCart(item) && toast("Added to cart")}
                   >
-                    Add To Cart
+                    <ShoppingCart />
                   </Button>
                   <ToastContainer />
 
                   <Button
                     variant="contained"
                     color="info"
+                    size="small"
                     onClick={() => handleSubmit(item.id)}
                   >
-                    Details
+                    <More />
                   </Button>
                 </CardActions>
               </Card>
@@ -131,19 +137,14 @@ const Product = ({ addToCart }) => {
           ))}
         </Grid>
       )}
+      <Pagination
+        count={Math.ceil(filterData.length / itemsPerPage)}
+        page={currentPage}
+        onChange={handlePageChange}
+        sx={{ mt: 2 }}
+      />
     </Container>
   );
-};
-
-const productStyles = {
-  img: {
-    objectFit: "contain",
-    width: "100%",
-    transition: "transform 0.5s",
-    "&:hover": {
-      transform: "scale(1.1)",
-    },
-  },
 };
 
 export default Product;
