@@ -31,7 +31,7 @@ const FeaturedProducts = () => {
     useEffect(() => {
         const fetchdata = async () => {
             try {
-                const response = await fetch(`https://6437a3340c58d3b145754311.mockapi.io/API/products?limit=9`);
+                const response = await fetch(`https://6437a3340c58d3b145754311.mockapi.io/API/products`);
                 const data = await response.json();
                 setProducts(data);
             } catch (error) {
@@ -81,7 +81,7 @@ const FeaturedProducts = () => {
                                 <Typography sx={{ '&:hover': { textDecoration: "underline" },fontSize:"1rem"  }} textAlign={'center'}>{item.title}</Typography>
                             </Link>
                             <Typography textAlign={'center'} fontWeight={'bold'} m='10px'>
-                            ${item.price.toFixed(2)} {''}
+                            ${Number(item.price).toFixed(2)} {''}
                             <span style={{textDecoration:"line-through"}}>${(item.price / (1 - item.discountPercentage / 100)).toFixed(2)}</span>
                             </Typography>
                             <Typography color={'error'} fontSize="13px" textAlign={'center'} >$ {item.discountPercentage} OFF</Typography>

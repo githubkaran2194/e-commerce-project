@@ -15,6 +15,7 @@ import CheckoutForm from "./pages/CheckoutForm";
 import Footer from "./components/Footer";
 import { HashLoader } from "react-spinners";
 import FeaturedProducts from "./pages/FeaturedProducts";
+import CreateProducts from "./pages/AdminPanel.js/CreateProducts";
 
 function App() {
   const [cart, setCart] = useState([]);
@@ -89,10 +90,11 @@ function App() {
             />
             <Route path="/checkout" element={<CheckoutForm />} />
             <Route path="*" element={<h1>Page not found</h1>} />
+
+            <Route path="/admin/create" element={<CreateProducts/>}/>
           </Routes>
         </>
       )}
-      <Footer />
     </Router>
   );
 }

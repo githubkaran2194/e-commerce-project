@@ -56,11 +56,11 @@ const Product = ({ addToCart }) => {
       );
       setFilterData(updatedFilter);
     }
-    setCurrentPage(1); // Reset page when applying a filter
+    setCurrentPage(1);
   };
 
   return (
-    <Container sx={{ mb: "10px ", display: "flex", flexDirection: "column", alignItems: "center" }}>
+    <Container sx={{ mb: "10px", display: "flex", flexDirection: "column", alignItems: "center" }}>
       <FilterSection handleFilter={handleFilter} />
       {loading ? (
         <Box
@@ -71,10 +71,10 @@ const Product = ({ addToCart }) => {
             height: "70vh",
           }}
         >
-          <PulseLoader color="white" size={40} />
+          <PulseLoader color="primary" size={40} />
         </Box>
       ) : filterData === null || filterData.length === 0 ? (
-        <Typography variant="h6" color="text.secondary" sx={{ mt: 4 }}>
+        <Typography variant="h6" color="text.secondary" sx={{ mt: 4, color: "primary.main" }}>
           No products found.
         </Typography>
       ) : (
@@ -88,29 +88,26 @@ const Product = ({ addToCart }) => {
               md={3}
               lg={3}
               sx={{ mb: "20px" }}
-            > <Card
-              sx={{ height: '100%', m: 1, p: '1px', cursor: "pointer", ':hover': { boxShadow: "0px 0px 10px 0px" } }}
             >
+              <Card
+                sx={{ height: '100%', p: '1px', cursor: "pointer", ':hover': { boxShadow: "0px 0px 10px 0px" } }}
+              >
                 <CardMedia
                   component="img"
-                  src={'https://m.media-amazon.com/images/I/31+kqyt854L._AC_SY400_.jpg'}
+                  src={item.thumbnail}
                   alt={item.title}
-                  height="140"
-                  sx={{ objectFit: "contain",mt:"10px" }}
+                  height="160"
+                  sx={{ objectFit: "contain", mt: "10px", transition:"0.3s", ':hover':{transform:"scale(1.1)"}}}
                   onClick={() => handleSubmit(item.id)}
                 />
                 <CardContent sx={{ flexGrow: 1, textAlign: 'center' }}>
-                  <Typography component="div" fontSize={"16px"} color="black" m='10px 0'>
+                  <Typography component="div" fontSize={"16px"} color="primary" m='10px 0'>
                     {item.title}
                   </Typography>
-                  <Typography color="grey" sx={{ color: "grey" }}>
-                    {item.brand}
-                  </Typography>
                   <Typography color="black" fontWeight={'bold'}>
-                    ${item.price.toFixed(2)} {''}
-                    $<span style={{textDecoration:"line-through"}}>{(item.price / (1 - item.discountPercentage / 100)).toFixed(2)}</span>
+                    $ {(Number(item.price).toFixed(2))} {''} <span style={{ textDecoration: "line-through", color: "grey" }}>${(item.price / (1 - item.discountPercentage)).toFixed(2)}</span>
                   </Typography>
-                  <Typography color="error">${item.discountPercentage} OFF</Typography>
+                  <Typography color="error.main">{item.discountPercentage}% OFF</Typography>
                 </CardContent>
                 <CardActions sx={{ display: "flex", justifyContent: "center" }}>
                   <Button
